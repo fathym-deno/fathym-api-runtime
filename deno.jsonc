@@ -1,5 +1,5 @@
 {
-  "name": "@aaa_bbb_ccc/www_xxx_yyy_zzz",
+  "name": "@fathym/api-runtime",
   "version": "0.0.0",
   "exports": {
     ".": "./main.ts",
@@ -8,16 +8,16 @@
   "tasks": {
     "build": "deno task build:fmt && deno task build:lint && deno task publish:check && deno task test",
     "build:dev": "deno run -A dev.ts build",
-    "build:docker": "docker build --no-cache -t www_xxx_yyy_zzz -f DOCKERFILE .",
+    "build:docker": "docker build --no-cache -t api-runtime -f DOCKERFILE .",
     "build:fmt": "deno fmt",
     "build:lint": "deno lint",
     "build:main": "deno run -A main.ts build",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "clean:docker": "docker stop www_xxx_yyy_zzz || true && docker rm www_xxx_yyy_zzz || true",
+    "clean:docker": "docker stop api-runtime || true && docker rm api-runtime || true",
     "deploy": "npx rimraf cov && deno task build && deno task test && npx ftm git",
-    "deploy:docker": "docker run --name www_xxx_yyy_zzz --network eac-runtimes --env-file .env.docker -dp 127.0.0.1:3000:3000 www_xxx_yyy_zzz",
+    "deploy:docker": "docker run --name api-runtime --network fathym-runtimes --env-file .env.docker -dp 127.0.0.1:6002:6002 -v C:\\fathym\\denokv\\everything-as-code-api-runtime:/_project/denokv api-runtime",
     "dev": "deno run -A --watch=apps/,configs/,data/,routes/,src/,static/ dev.ts",
-    "network:docker": "docker network create eac-runtimes || true",
+    "network:docker": "docker network create fathym-runtimes || true",
     "publish:check": "deno publish --dry-run --allow-dirty",
     "refresh:docker": "npx rimraf cov && deno task build:docker && deno task network:docker && deno task clean:docker && deno task deploy:docker",
     "start": "deno run -A main.ts",
@@ -25,40 +25,31 @@
     "version": "deno run -A jsr:@fathym/common@0/build/version"
   },
   "imports": {
-    "@fathym/common": "jsr:@fathym/common@0",
-    "@fathym/eac": "jsr:@fathym/eac@0",
-    "@fathym/eac-runtime": "jsr:@fathym/eac-runtime@0",
-    "@fathym/ioc": "jsr:@fathym/ioc@0",
-    "@std/log": "jsr:@std/log@0.224.6"
+    "@fathym/common": "jsr:@fathym/common@0.2.168",
+    // "@fathym/eac/runtime": "../eac/src/runtime/_/.exports.ts",
+    // "@fathym/eac/runtime/server": "../eac/src/runtime/server/.exports.ts",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.27",
+    // "@fathym/eac-applications/runtime": "../eac-applications/src/runtime/_/.exports.ts",
+    // "@fathym/eac-applications/steward/plugins": "../eac-applications/src/steward/plugins/.exports.ts",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.37",
+    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.6",
+    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.4",
+    "@fathym/eac-dfs": "jsr:@fathym/eac-dfs@0.0.27",
+    "@fathym/ioc": "jsr:@fathym/ioc@0.0.13",
+    "@std/log": "jsr:@std/log@0.224.9"
   },
-  "exclude": [
-    "**/_eac-runtime/*"
-  ],
+  "exclude": ["**/_eac-runtime/*"],
   "lint": {
-    "include": [
-      "apps/",
-      "configs/",
-      "src/",
-      "tests/"
-    ],
+    "include": ["apps/", "configs/", "src/", "tests/"],
     "exclude": [],
     "rules": {
-      "tags": [
-        "recommended"
-      ],
-      "include": [
-        "ban-untagged-todo"
-      ],
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
       "exclude": []
     }
   },
   "fmt": {
-    "include": [
-      "apps/",
-      "configs/",
-      "src/",
-      "tests/"
-    ],
+    "include": ["apps/", "configs/", "src/", "tests/"],
     "exclude": [],
     "indentWidth": 2,
     "lineWidth": 100,
@@ -67,8 +58,6 @@
     "singleQuote": true,
     "useTabs": false
   },
-  "unstable": [
-    "kv"
-  ],
+  "unstable": ["kv"],
   "lock": false
 }

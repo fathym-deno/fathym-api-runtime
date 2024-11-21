@@ -1,15 +1,27 @@
-import { EaCRuntimeConfig, EaCRuntimePlugin, EaCRuntimePluginConfig } from '@fathym/eac-runtime';
-import { EaCAPIProcessor } from '@fathym/eac/applications';
-import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
+import { EverythingAsCode } from '@fathym/eac';
+import { EaCRuntimeConfig } from '@fathym/eac/runtime/config';
+import { EaCRuntimePlugin, EaCRuntimePluginConfig } from '@fathym/eac/runtime/plugins';
+import { EverythingAsCodeApplications } from '@fathym/eac-applications';
+import { EaCStewardPlugin } from '@fathym/eac-applications/steward/plugins';
+import { EaCAPIProcessor } from '@fathym/eac-applications/processors';
+import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac-dfs';
 import { IoCContainer } from '@fathym/ioc';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
   constructor() {}
 
   public Setup(config: EaCRuntimeConfig) {
-    const pluginConfig: EaCRuntimePluginConfig = {
+    const pluginConfig: EaCRuntimePluginConfig<
+      EverythingAsCode & EverythingAsCodeApplications
+    > = {
       Name: RuntimePlugin.name,
-      Plugins: [],
+      Plugins: [
+        new EaCStewardPlugin({
+          Application: {
+            Path: '/api/eac*',
+          },
+        }),
+      ],
       IoC: new IoCContainer(),
       EaC: {
         Projects: {
