@@ -21,6 +21,16 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Path: '/api/eac*',
           },
         }),
+        // new EaCAzureStewardPlugin({
+        //   Application: {
+        //     Path: '/api/eac*',
+        //   },
+        // }),
+        // new EaCGitHubStewardPlugin({
+        //   Application: {
+        //     Path: '/api/eac*',
+        //   },
+        // }),
       ],
       IoC: new IoCContainer(),
       EaC: {
