@@ -1,26 +1,24 @@
 import { EverythingAsCode } from '@fathym/eac';
 import { EaCRuntimeConfig } from '@fathym/eac/runtime/config';
-import {
-  EaCRuntimePlugin,
-  EaCRuntimePluginConfig,
-} from '@fathym/eac/runtime/plugins';
+import { EaCRuntimePlugin, EaCRuntimePluginConfig } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCStewardPlugin } from '@fathym/eac-applications/steward/plugins';
 import { EaCAPIProcessor } from '@fathym/eac-applications/processors';
 import {
   EaCAzureAPIPlugin,
-  EaCAzureStewardPlugin,
+  EaCAzureCloudsStewardPlugin,
+  EaCAzureSecretsStewardPlugin,
 } from '@fathym/eac-azure/steward/plugins';
-import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac-dfs';
+import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
 import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
 import {
   EaCLicensingAPIPlugin,
   EaCLicensingStewardPlugin,
 } from '@fathym/eac-licensing/steward/plugins';
 import {
+  EaCDevOpsActionsStewardPlugin,
   EaCSourceConnectionsStewardPlugin,
   EaCSourcesStewardPlugin,
-  EaCDevOpsActionsStewardPlugin,
 } from '@fathym/eac-sources/steward/plugins';
 import { IoCContainer } from '@fathym/ioc';
 
@@ -45,9 +43,15 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Priority: 500,
           },
         }),
-        new EaCAzureStewardPlugin({
+        new EaCAzureCloudsStewardPlugin({
           Application: {
-            Path: '/api/steward/azure*',
+            Path: '/api/steward/clouds*',
+            Priority: 500,
+          },
+        }),
+        new EaCAzureSecretsStewardPlugin({
+          Application: {
+            Path: '/api/steward/secrets*',
             Priority: 500,
           },
         }),
