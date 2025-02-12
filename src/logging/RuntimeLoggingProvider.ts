@@ -2,7 +2,7 @@ import { EaCApplicationsLoggingProvider } from '@fathym/eac-applications/runtime
 
 export class RuntimeLoggingProvider extends EaCApplicationsLoggingProvider {
   constructor() {
-    const loggingPackages = ['@fathym/api-runtime'];
+    const loggingPackages = ['@fathym/fathym-api-runtime'];
 
     super(loggingPackages);
   }

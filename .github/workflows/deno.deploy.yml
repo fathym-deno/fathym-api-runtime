@@ -7,7 +7,7 @@ on:
 
 env:
   ENTRY_POINT: ./main.ts
-  PROJECT_NAME: api-runtime
+  PROJECT_NAME: fathym-api-runtime
 
 jobs:
   deploy:
