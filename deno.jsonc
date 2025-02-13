@@ -15,7 +15,7 @@
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "clean:docker": "docker stop fathym-api-runtime || true && docker rm fathym-api-runtime || true",
     "deploy": "npx rimraf cov && deno task build && deno task test && npx ftm git",
-    "deploy:docker": "docker run --name fathym-api-runtime --network fathym-runtimes --env-file .env.docker -dp 127.0.0.1:5502:5502 -v C:\\fathym\\denokv\\everything-as-code-fathym-api-runtime:/_project/denokv fathym-api-runtime",
+    "deploy:docker": "docker run --name fathym-api-runtime --network fathym-runtimes --env-file .env.docker -dp 127.0.0.1:5502:5502 -v C:\\fathym\\denokv\\fathym-api-runtime:/_project/denokv fathym-api-runtime",
     "dev": "deno run -A --watch=apps/,configs/,data/,routes/,src/,static/ dev.ts",
     "network:docker": "docker network create fathym-runtimes || true",
     "publish:check": "deno publish --dry-run --allow-dirty",
