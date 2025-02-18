@@ -1,25 +1,28 @@
 import { EverythingAsCode } from '@fathym/eac';
-import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
-import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/config';
+import {
+  EaCRuntimeConfig,
+  EaCRuntimePluginConfig,
+} from '@fathym/eac/runtime/config';
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCStewardPlugin } from '@fathym/eac-applications/steward/plugins';
 import { EaCAPIProcessor } from '@fathym/eac-applications/processors';
 import {
-  // EaCAzureAPIPlugin,
-  // EaCAzureCloudsStewardPlugin,
-  // EaCAzureSecretsStewardPlugin,
+  EaCAzureAPIPlugin,
+  EaCAzureCloudsStewardPlugin,
+  EaCAzureSecretsStewardPlugin,
 } from '@fathym/eac-azure/steward/plugins';
-// import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
-// import {
-//   EaCLicensingAPIPlugin,
-//   EaCLicensingStewardPlugin,
-// } from '@fathym/eac-licensing/steward/plugins';
-// import {
-//   EaCDevOpsActionsStewardPlugin,
-//   EaCSourceConnectionsStewardPlugin,
-//   EaCSourcesStewardPlugin,
-// } from '@fathym/eac-sources/steward/plugins';
+import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
+import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
+import {
+  EaCLicensingAPIPlugin,
+  EaCLicensingStewardPlugin,
+} from '@fathym/eac-licensing/steward/plugins';
+import {
+  EaCDevOpsActionsStewardPlugin,
+  EaCSourceConnectionsStewardPlugin,
+  EaCSourcesStewardPlugin,
+} from '@fathym/eac-sources/steward/plugins';
 import { IoCContainer } from '@fathym/ioc';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
@@ -32,55 +35,55 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
       Name: RuntimePlugin.name,
       Plugins: [
         new EaCStewardPlugin({}),
-        // new EaCAzureAPIPlugin({}),
-        // new EaCAzureCloudsStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/clouds*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCAzureSecretsStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/secrets*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCIoTStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/iot*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCSourceConnectionsStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/source-connections*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCSourcesStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/sources*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCDevOpsActionsStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/devops-actions*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCLicensingAPIPlugin({
-        //   Application: {
-        //     Path: '/api/licensing*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCLicensingStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/devops-actions*',
-        //     Priority: 500,
-        //   },
-        // }),
+        new EaCAzureAPIPlugin({}),
+        new EaCAzureCloudsStewardPlugin({
+          Application: {
+            Path: '/api/steward/clouds*',
+            Priority: 500,
+          },
+        }),
+        new EaCAzureSecretsStewardPlugin({
+          Application: {
+            Path: '/api/steward/secrets*',
+            Priority: 500,
+          },
+        }),
+        new EaCIoTStewardPlugin({
+          Application: {
+            Path: '/api/steward/iot*',
+            Priority: 500,
+          },
+        }),
+        new EaCSourceConnectionsStewardPlugin({
+          Application: {
+            Path: '/api/steward/source-connections*',
+            Priority: 500,
+          },
+        }),
+        new EaCSourcesStewardPlugin({
+          Application: {
+            Path: '/api/steward/sources*',
+            Priority: 500,
+          },
+        }),
+        new EaCDevOpsActionsStewardPlugin({
+          Application: {
+            Path: '/api/steward/devops-actions*',
+            Priority: 500,
+          },
+        }),
+        new EaCLicensingAPIPlugin({
+          Application: {
+            Path: '/api/licensing*',
+            Priority: 500,
+          },
+        }),
+        new EaCLicensingStewardPlugin({
+          Application: {
+            Path: '/api/steward/devops-actions*',
+            Priority: 500,
+          },
+        }),
       ],
       IoC: new IoCContainer(),
       EaC: {
@@ -139,8 +142,8 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         $GlobalOptions: {
           DFSs: {
             PreventWorkers: true,
-          },
-        },
+          }
+        }
       },
     };
 
