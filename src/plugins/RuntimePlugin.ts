@@ -1,8 +1,5 @@
 import { EverythingAsCode } from '@fathym/eac';
-import {
-  EaCRuntimeConfig,
-  EaCRuntimePluginConfig,
-} from '@fathym/eac/runtime/config';
+import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/config';
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCStewardPlugin } from '@fathym/eac-applications/steward/plugins';
@@ -34,8 +31,8 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
     > = {
       Name: RuntimePlugin.name,
       Plugins: [
-        new EaCStewardPlugin({}),
-        new EaCAzureAPIPlugin({}),
+        new EaCStewardPlugin(),
+        new EaCAzureAPIPlugin(),
         new EaCAzureCloudsStewardPlugin({
           Application: {
             Path: '/api/steward/clouds*',
@@ -142,8 +139,8 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         $GlobalOptions: {
           DFSs: {
             PreventWorkers: true,
-          }
-        }
+          },
+        },
       },
     };
 

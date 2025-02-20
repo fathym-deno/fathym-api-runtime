@@ -25,18 +25,18 @@
     "version": "deno run -A jsr:@fathym/common@0/build/version"
   },
   "imports": {
-    "@fathym/common": "jsr:@fathym/common@0.2.175",
-    "@fathym/eac": "jsr:@fathym/eac@0.2.75-runtime-matrix",
-    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.77-runtime-matrix",
+    "@fathym/common": "jsr:@fathym/common@0.2.179",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.84",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.82",
     // "@fathym/eac-applications/runtime": "../eac-applications/src/runtime/_/.exports.ts",
     // "@fathym/eac-applications/steward/plugins": "../eac-applications/src/steward/plugins/.exports.ts",
-    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.36",
-    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.7",
-    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.10",
-    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.10",
-    "@fathym/eac-sources": "jsr:@fathym/eac-sources@0.0.8",
-    "@fathym/ioc": "jsr:@fathym/ioc@0.0.13",
-    "@std/log": "jsr:@std/log@0.224.9"
+    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.39",
+    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.10",
+    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.12",
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.12",
+    "@fathym/eac-sources": "jsr:@fathym/eac-sources@0.0.10",
+    "@fathym/ioc": "jsr:@fathym/ioc@0.0.14",
+    "@std/log": "jsr:@std/log@0.224.14"
   },
   "exclude": ["**/_eac-runtime/*"],
   "lint": {
