@@ -10,17 +10,18 @@ import {
   EaCAzureSecretsStewardPlugin,
 } from '@fathym/eac-azure/steward/plugins';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
-import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
-import {
-  EaCLicensingAPIPlugin,
-  EaCLicensingStewardPlugin,
-} from '@fathym/eac-licensing/steward/plugins';
-import {
-  EaCDevOpsActionsStewardPlugin,
-  EaCSourceConnectionsStewardPlugin,
-  EaCSourcesStewardPlugin,
-} from '@fathym/eac-sources/steward/plugins';
+// import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
+// import {
+//   EaCLicensingAPIPlugin,
+//   EaCLicensingStewardPlugin,
+// } from '@fathym/eac-licensing/steward/plugins';
+// import {
+//   EaCDevOpsActionsStewardPlugin,
+//   EaCSourceConnectionsStewardPlugin,
+//   EaCSourcesStewardPlugin,
+// } from '@fathym/eac-sources/steward/plugins';
 import { IoCContainer } from '@fathym/ioc';
+import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
   constructor() {}
@@ -32,55 +33,61 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
       Name: RuntimePlugin.name,
       Plugins: [
         new EaCStewardPlugin(),
-        new EaCAzureAPIPlugin(),
+        new EaCAzureAPIPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
         new EaCAzureCloudsStewardPlugin({
           Application: {
-            Path: '/api/steward/clouds*',
+            Path: '/api/steward/clouds/azure*',
             Priority: 500,
           },
         }),
         new EaCAzureSecretsStewardPlugin({
           Application: {
-            Path: '/api/steward/secrets*',
+            Path: '/api/steward/secrets/azure*',
             Priority: 500,
           },
         }),
-        new EaCIoTStewardPlugin({
-          Application: {
-            Path: '/api/steward/iot*',
-            Priority: 500,
-          },
-        }),
-        new EaCSourceConnectionsStewardPlugin({
-          Application: {
-            Path: '/api/steward/source-connections*',
-            Priority: 500,
-          },
-        }),
-        new EaCSourcesStewardPlugin({
-          Application: {
-            Path: '/api/steward/sources*',
-            Priority: 500,
-          },
-        }),
-        new EaCDevOpsActionsStewardPlugin({
-          Application: {
-            Path: '/api/steward/devops-actions*',
-            Priority: 500,
-          },
-        }),
-        new EaCLicensingAPIPlugin({
-          Application: {
-            Path: '/api/licensing*',
-            Priority: 500,
-          },
-        }),
-        new EaCLicensingStewardPlugin({
-          Application: {
-            Path: '/api/steward/devops-actions*',
-            Priority: 500,
-          },
-        }),
+        // new EaCIoTStewardPlugin({
+        //   Application: {
+        //     Path: '/api/steward/iot*',
+        //     Priority: 500,
+        //   },
+        // }),
+        // new EaCSourceConnectionsStewardPlugin({
+        //   Application: {
+        //     Path: '/api/steward/source-connections*',
+        //     Priority: 500,
+        //   },
+        // }),
+        // new EaCSourcesStewardPlugin({
+        //   Application: {
+        //     Path: '/api/steward/sources*',
+        //     Priority: 500,
+        //   },
+        // }),
+        // new EaCDevOpsActionsStewardPlugin({
+        //   Application: {
+        //     Path: '/api/steward/devops-actions*',
+        //     Priority: 500,
+        //   },
+        // }),
+        // new EaCLicensingAPIPlugin({
+        //   Application: {
+        //     Path: '/api/licensing*',
+        //     Priority: 500,
+        //   },
+        // }),
+        // new EaCLicensingStewardPlugin({
+        //   Application: {
+        //     Path: '/api/steward/devops-actions*',
+        //     Priority: 500,
+        //   },
+        // }),
       ],
       IoC: new IoCContainer(),
       EaC: {
@@ -134,6 +141,15 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
               DefaultFile: 'index.ts',
               Extensions: ['ts'],
             } as EaCLocalDistributedFileSystemDetails,
+          },
+        },
+        Modifiers: {
+          jwtValidate: {
+            Details: {
+              Type: 'JWTValidation',
+              Name: 'Validate JWT',
+              Description: 'Validate incoming JWTs to restrict access.',
+            } as EaCJWTValidationModifierDetails,
           },
         },
         $GlobalOptions: {
