@@ -28,7 +28,7 @@
     "@fathym/common": "jsr:@fathym/common@0.2.179",
     "@fathym/eac": "jsr:@fathym/eac@0.2.90",
     // "@fathym/eac/runtime": "../eac/src/runtime/_/.exports.ts",
-    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.84",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.91-analytics",
     // "@fathym/eac-applications/runtime": "../eac-applications/src/runtime/_/.exports.ts",
     // "@fathym/eac-applications/steward/plugins": "../eac-applications/src/steward/plugins/.exports.ts",
     "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.40",
