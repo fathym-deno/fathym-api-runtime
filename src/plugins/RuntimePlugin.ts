@@ -42,14 +42,16 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         }),
         new EaCAzureCloudsStewardPlugin({
           Application: {
-            Path: '/api/steward/clouds/azure*',
-            Priority: 500,
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
           },
         }),
         new EaCAzureSecretsStewardPlugin({
           Application: {
-            Path: '/api/steward/secrets/azure*',
-            Priority: 500,
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
           },
         }),
         // new EaCIoTStewardPlugin({
