@@ -10,16 +10,16 @@ import {
   EaCAzureSecretsStewardPlugin,
 } from '@fathym/eac-azure/steward/plugins';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
-// import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
-// import {
-//   EaCLicensingAPIPlugin,
-//   EaCLicensingStewardPlugin,
-// } from '@fathym/eac-licensing/steward/plugins';
-// import {
-//   EaCDevOpsActionsStewardPlugin,
-//   EaCSourceConnectionsStewardPlugin,
-//   EaCSourcesStewardPlugin,
-// } from '@fathym/eac-sources/steward/plugins';
+import { EaCIoTStewardPlugin } from '@fathym/eac-iot/steward/plugins';
+import {
+  EaCLicensingAPIPlugin,
+  EaCLicensingStewardPlugin,
+} from '@fathym/eac-licensing/steward/plugins';
+import {
+  EaCDevOpsActionsStewardPlugin,
+  EaCSourceConnectionsStewardPlugin,
+  EaCSourcesStewardPlugin,
+} from '@fathym/eac-sources/steward/plugins';
 import { IoCContainer } from '@fathym/ioc';
 import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
 
@@ -40,6 +40,13 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             },
           },
         }),
+        new EaCLicensingAPIPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
         new EaCAzureCloudsStewardPlugin({
           Application: {
             JWTValidationModifier: {
@@ -54,16 +61,18 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             },
           },
         }),
-        // new EaCIoTStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/iot*',
-        //     Priority: 500,
-        //   },
-        // }),
+        new EaCIoTStewardPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
         // new EaCSourceConnectionsStewardPlugin({
         //   Application: {
-        //     Path: '/api/steward/source-connections*',
-        //     Priority: 500,
+        //     JWTValidationModifier: {
+        //       Lookup: 'jwtValidate',
+        //     },
         //   },
         // }),
         // new EaCSourcesStewardPlugin({
@@ -78,18 +87,13 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         //     Priority: 500,
         //   },
         // }),
-        // new EaCLicensingAPIPlugin({
-        //   Application: {
-        //     Path: '/api/licensing*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCLicensingStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/devops-actions*',
-        //     Priority: 500,
-        //   },
-        // }),
+        new EaCLicensingStewardPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
       ],
       IoC: new IoCContainer(),
       EaC: {
