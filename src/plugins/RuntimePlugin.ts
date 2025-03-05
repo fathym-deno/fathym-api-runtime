@@ -68,25 +68,27 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             },
           },
         }),
-        // new EaCSourceConnectionsStewardPlugin({
-        //   Application: {
-        //     JWTValidationModifier: {
-        //       Lookup: 'jwtValidate',
-        //     },
-        //   },
-        // }),
-        // new EaCSourcesStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/sources*',
-        //     Priority: 500,
-        //   },
-        // }),
-        // new EaCDevOpsActionsStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/devops-actions*',
-        //     Priority: 500,
-        //   },
-        // }),
+        new EaCSourceConnectionsStewardPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
+        new EaCSourcesStewardPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
+        new EaCDevOpsActionsStewardPlugin({
+          Application: {
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
         new EaCLicensingStewardPlugin({
           Application: {
             JWTValidationModifier: {
