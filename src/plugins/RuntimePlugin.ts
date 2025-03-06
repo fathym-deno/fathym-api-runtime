@@ -91,6 +91,7 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         }),
         new EaCLicensingStewardPlugin({
           Application: {
+            Path: '/api/steward/licenses*',
             JWTValidationModifier: {
               Lookup: 'jwtValidate',
             },
