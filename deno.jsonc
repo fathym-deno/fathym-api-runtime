@@ -37,7 +37,8 @@
     // "@fathym/eac-azure/steward/plugins": "../eac-azure/src/steward/plugins/.exports.ts",
     "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.13",
     "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.17",
-    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.23",
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.24",
+    // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
     "@fathym/eac-sources": "jsr:@fathym/eac-sources@0.0.14",
     "@fathym/ioc": "jsr:@fathym/ioc@0.0.14",
     "@std/log": "jsr:@std/log@0.224.14"
