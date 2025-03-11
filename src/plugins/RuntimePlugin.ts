@@ -2,7 +2,6 @@ import { EverythingAsCode } from '@fathym/eac';
 import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/config';
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
-import { EaCStewardPlugin } from '@fathym/eac-applications/steward/plugins';
 import { EaCAPIProcessor } from '@fathym/eac-applications/processors';
 import {
   EaCAzureAPIPlugin,
@@ -32,7 +31,6 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
     > = {
       Name: RuntimePlugin.name,
       Plugins: [
-        new EaCStewardPlugin(),
         new EaCAzureAPIPlugin({
           Application: {
             JWTValidationModifier: {
@@ -161,6 +159,18 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             } as EaCJWTValidationModifierDetails,
           },
         },
+        // DenoKVs: {
+        //   eac: {
+        //     Details: {
+        //       Type: "DenoKV",
+        //       Name: "EaC Steward Commit DenoKV",
+        //       Description:
+        //         "The Deno KV database to use for the commit processing of an EaC",
+        //       DenoKVPath: Deno.env.get("EAC_DENO_KV_PATH") ||
+        //         undefined,
+        //     } as EaCDenoKVDetails,
+        //   },
+        // },
         $GlobalOptions: {
           DFSs: {
             PreventWorkers: true,
