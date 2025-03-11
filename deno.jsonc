@@ -36,7 +36,7 @@
     // "@fathym/eac-applications/steward/api": "../eac-applications/src/steward/api/.exports.ts",
     // "@fathym/eac-applications/steward/middlewares": "../eac-applications/src/steward/middlewares/.exports.ts",
     // "@fathym/eac-applications/steward/plugins": "../eac-applications/src/steward/plugins/.exports.ts",
-    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.55",
+    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.56",
     // "@fathym/eac-azure/steward/plugins": "../eac-azure/src/steward/plugins/.exports.ts",
     "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.13",
     "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.18",
